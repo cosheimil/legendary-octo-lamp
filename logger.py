@@ -1,10 +1,3 @@
-"""
-Logging configuration module.
-
-This module provides centralized logging setup for the entire application,
-with support for both console and file logging with different levels and formats.
-"""
-
 import logging
 import logging.handlers
 import sys

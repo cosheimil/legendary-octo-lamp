@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   prefect-server:
@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile.prefect
     ports:
-      - "4200:4200"
-      - "4201:4201"
+      - 4200:4200
+      - 4201:4201
     environment:
       - PREFECT_API_URL=http://localhost:4200/api
       - PREFECT_HOME=/root/.prefect
@@ -16,10 +16,10 @@ services:
       - ./dask_jobs:/app/dask_jobs
       - ./data:/app/data
     healthcheck:
-     test: ["CMD", "curl", "-f", "http://localhost:4200/api/health"]
-     interval: 30s
-     timeout: 60s
-     retries: 3
+      test: sh - c "curl -f http://localhost:4200/api/health"
+      interval: 30s
+      timeout: 60s
+      retries: 3
 
   postgres:
     image: postgres:15
@@ -28,11 +28,11 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
     ports:
-      - "5432:5432"
+      - 5432:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U admin"]
+      test: sh -c "pg_isready -U admin"
       interval: 10s
       timeout: 5s
       retries: 5
@@ -44,12 +44,12 @@ services:
       - MINIO_ROOT_USER=minioadmin
       - MINIO_ROOT_PASSWORD=minioadmin
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - 9000:9000
+      - 9001:9001
     volumes:
       - minio_data:/data
     healthcheck:
-      test: ["CMD", "mc", "ready", "local"]
+      test: sh -c "mc ready local"
       interval: 10s
       timeout: 5s
       retries: 5
@@ -63,7 +63,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8501:8501"
+      - 8501:8501
     volumes:
       - ./dashboard:/app/dashboard
       - ./data:/app/data
@@ -79,7 +79,7 @@ services:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:8501/_stcore/health"]
+      test: sh -c "curl --fail http://localhost:8501/_stcore/health"
       interval: 30s
       timeout: 10s
       retries: 3

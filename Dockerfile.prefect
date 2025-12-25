@@ -1,12 +1,11 @@
 FROM astral/uv:python3.11-trixie-slim
 
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+  CMD curl --fail http://localhost:8000/health || exit 1
+
 WORKDIR /app
 
-# Установка системных зависимостей
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+RUN rm -rf /var/lib/apt/lists/*
 
 COPY pyproject.toml .
 COPY uv.lock .

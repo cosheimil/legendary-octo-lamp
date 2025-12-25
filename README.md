@@ -5,6 +5,7 @@
 ## 📋 Описание проекта
 
 Распределенная система обработки данных e-commerce продаж модной одежды с использованием:
+
 - **Dask** - распределенная обработка больших данных
 - **Prefect** - оркестрация ETL пайплайнов
 - **PostgreSQL** - хранилище аналитических данных
@@ -43,12 +44,12 @@ docker-compose exec prefect-server uv run /app/dask_jobs/model_training.py
 
 ## 📊 Доступ к сервисам
 
-| Сервис | URL | Логин/Пароль |
-|--------|-----|--------------|
-| Streamlit Dashboard | http://localhost:8501 | - |
-| Prefect UI | http://localhost:4200 | - |
-| MinIO Console | http://localhost:9001 | minioadmin / minioadmin |
-| PostgreSQL | localhost:5432 | admin / admin |
+| Сервис              | URL                   | Логин/Пароль            |
+| ------------------- | --------------------- | ----------------------- |
+| Streamlit Dashboard | http://localhost:8501 | -                       |
+| Prefect UI          | http://localhost:4200 | -                       |
+| MinIO Console       | http://localhost:9001 | minioadmin / minioadmin |
+| PostgreSQL          | localhost:5432        | admin / admin           |
 
 ## 🎯 Соответствие требованиям
 
@@ -58,7 +59,7 @@ docker-compose exec prefect-server uv run /app/dask_jobs/model_training.py
 ✅ Визуализация результатов (Streamlit)  
 ✅ Документация архитектуры  
 ✅ Запуск через docker-compose  
-✅ Минимум 3 задачи (extract, transform, load)  
+✅ Минимум 3 задачи (extract, transform, load)
 
 Готово к запуску! 🚀
 
